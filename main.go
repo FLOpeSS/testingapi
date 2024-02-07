@@ -43,12 +43,9 @@ func createJson(w http.ResponseWriter, status int, obj any) {
 	w.WriteHeader(status)
 	w.Write(response)
 }
-
-func testing_something_new() {
-}
-
 func requestAlbums(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
+		fmt.Println("request /post")
 		var newAlbums album
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
@@ -62,6 +59,7 @@ func requestAlbums(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if r.Method == http.MethodGet {
+		fmt.Println("request /get")
 		createJson(w, http.StatusCreated, albums)
 	}
 }
@@ -90,5 +88,4 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
 }
